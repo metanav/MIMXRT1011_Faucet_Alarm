@@ -1,0 +1,12 @@
+ei_classifier_porting.cpp:18:10:void SysTick_Handler()	4	static
+ei_classifier_porting.cpp:28:6:void SysTick_DelayTicks(uint32_t)	16	static
+ei_classifier_porting.cpp:35:29:EI_IMPULSE_ERROR ei_run_impulse_check_canceled()	4	static
+ei_classifier_porting.cpp:39:29:EI_IMPULSE_ERROR ei_sleep(int32_t)	16	static
+ei_classifier_porting.cpp:45:10:uint64_t ei_read_timer_ms()	4	static
+ei_classifier_porting.cpp:49:10:uint64_t ei_read_timer_us()	16	static
+ei_classifier_porting.cpp:56:28:)	16	static
+ei_classifier_porting.cpp:63:28:void ei_printf_float(float)	16	static
+ei_classifier_porting.cpp:67:29:void* ei_malloc(size_t)	16	static
+ei_classifier_porting.cpp:71:29:void* ei_calloc(size_t, size_t)	16	static
+ei_classifier_porting.cpp:75:28:void ei_free(void*)	16	static
+ei_classifier_porting.cpp:82:28:void DebugLog(const char*)	16	static

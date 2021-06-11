@@ -1,0 +1,2 @@
+datetime.cpp:3:6:void breakTime(timestamp_t, datetime_t*)	32	static
+datetime.cpp:53:13:timestamp_t makeTime(datetime_t)	24	static
