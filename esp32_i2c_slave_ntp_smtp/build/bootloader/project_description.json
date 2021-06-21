@@ -1,0 +1,20 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "/Users/naveen/esp/esp-idf/components/bootloader/subproject",
+    "build_dir":          "/Users/naveen/esp/i2c_slave_ntp_smtp/build/bootloader",
+    "config_file":        "/Users/naveen/esp/i2c_slave_ntp_smtp/sdkconfig",
+    "config_defaults":    "",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "git_revision":       "v4.2-dirty",
+    "target":             "esp32",
+    "phy_data_partition": "",
+    "monitor_baud" :      "115200",
+    "monitor_toolprefix": "xtensa-esp32-elf-",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : "/Users/naveen/esp/esp-idf/components/efuse/Kconfig;/Users/naveen/esp/esp-idf/components/esp32/Kconfig;/Users/naveen/esp/esp-idf/components/esp_common/Kconfig;/Users/naveen/esp/esp-idf/components/log/Kconfig;/Users/naveen/esp/esp-idf/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "/Users/naveen/esp/esp-idf/components/bootloader/Kconfig.projbuild;/Users/naveen/esp/esp-idf/components/esptool_py/Kconfig.projbuild;/Users/naveen/esp/esp-idf/components/partition_table/Kconfig.projbuild"
+    },
+    "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp32", "esp_common", "esp_rom", "esptool_py", "log", "main", "micro-ecc", "partition_table", "soc", "spi_flash", "xtensa", "" ],
+    "build_component_paths" : [ "/Users/naveen/esp/esp-idf/components/bootloader", "/Users/naveen/esp/esp-idf/components/bootloader_support", "/Users/naveen/esp/esp-idf/components/efuse", "/Users/naveen/esp/esp-idf/components/esp32", "/Users/naveen/esp/esp-idf/components/esp_common", "/Users/naveen/esp/esp-idf/components/esp_rom", "/Users/naveen/esp/esp-idf/components/esptool_py", "/Users/naveen/esp/esp-idf/components/log", "/Users/naveen/esp/esp-idf/components/bootloader/subproject/main", "/Users/naveen/esp/esp-idf/components/bootloader/subproject/components/micro-ecc", "/Users/naveen/esp/esp-idf/components/partition_table", "/Users/naveen/esp/esp-idf/components/soc", "/Users/naveen/esp/esp-idf/components/spi_flash", "/Users/naveen/esp/esp-idf/components/xtensa", "" ]
+}
