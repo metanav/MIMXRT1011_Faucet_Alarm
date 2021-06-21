@@ -133,8 +133,7 @@ bool PCF85063AT_countdown_get(uint8_t *value)
   return i2c_read(PCF85063AT_I2C_ADDR, REG_COUNTDOWN_TIMER_VALUE_ADDR, 1, value);
 }
 
-bool
-PCF85063AT_alarm_set(int second, int minute, int hour, int day,
+bool PCF85063AT_alarm_set(int second, int minute, int hour, int day,
                      int weekday)
 {
   uint8_t buf[5];

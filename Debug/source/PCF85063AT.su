@@ -8,6 +8,6 @@ PCF85063AT.cpp:66:6:bool PCF85063AT_stop(bool)	24	static
 PCF85063AT.cpp:79:6:bool PCF85063AT_clkout_freq_set(uint16_t)	24	static
 PCF85063AT.cpp:106:6:bool PCF85063AT_countdown_set(bool, CountdownSrcClock, uint8_t, bool, bool)	32	static
 PCF85063AT.cpp:131:6:bool PCF85063AT_countdown_get(uint8_t*)	16	static
-PCF85063AT.cpp:137:1:bool PCF85063AT_alarm_set(int, int, int, int, int)	32	static
-PCF85063AT.cpp:157:6:bool PCF85063AT_ctrl_get(PCF85063AT_Regs*)	24	static
-PCF85063AT.cpp:170:6:bool PCF85063AT_ctrl_set(PCF85063AT_Regs, bool)	24	static
+PCF85063AT.cpp:136:6:bool PCF85063AT_alarm_set(int, int, int, int, int)	32	static
+PCF85063AT.cpp:156:6:bool PCF85063AT_ctrl_get(PCF85063AT_Regs*)	24	static
+PCF85063AT.cpp:169:6:bool PCF85063AT_ctrl_set(PCF85063AT_Regs, bool)	24	static

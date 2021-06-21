@@ -22,10 +22,12 @@ RM := rm -rf
 -include source/edge-impulse-sdk/tensorflow/lite/c/subdir.mk
 -include source/edge-impulse-sdk/porting/zephyr/subdir.mk
 -include source/edge-impulse-sdk/porting/stm32-cubeai/subdir.mk
+-include source/edge-impulse-sdk/porting/sony/subdir.mk
 -include source/edge-impulse-sdk/porting/silabs/subdir.mk
 -include source/edge-impulse-sdk/porting/posix/subdir.mk
 -include source/edge-impulse-sdk/porting/mingw32/subdir.mk
 -include source/edge-impulse-sdk/porting/mbed/subdir.mk
+-include source/edge-impulse-sdk/porting/lib/subdir.mk
 -include source/edge-impulse-sdk/porting/imxrt1010/subdir.mk
 -include source/edge-impulse-sdk/porting/himax/subdir.mk
 -include source/edge-impulse-sdk/porting/ecm3532/subdir.mk

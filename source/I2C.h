@@ -19,6 +19,7 @@
 void i2c_scan();
 void i2c_init();
 bool i2c_read(uint8_t deviceAddr, uint8_t reg, uint8_t bytes, uint8_t *in);
+bool i2c_read(uint8_t deviceAddr, uint8_t bytes, uint8_t *in);
 bool i2c_write(uint8_t deviceAddr, uint8_t bytes, uint8_t *out);
 // overloadded function with register
 bool i2c_write(uint8_t deviceAddr, uint8_t reg, uint8_t bytes, uint8_t *out);

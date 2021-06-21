@@ -37,7 +37,7 @@ source/MIMXRT1011_Faucet_Alarm_Project.o \
  /Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/device/MIMXRT1011.h \
  ../source/PCF85063AT.h ../source/datetime.h ../source/I2C.h \
  /Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/drivers/fsl_lpi2c.h \
- ../source/compiletime.h \
+ ../source/OLED.h ../source/compiletime.h \
  ../source/edge-impulse-sdk/classifier/ei_run_classifier.h \
  /Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/source/model-parameters/model_metadata.h \
  ../source/edge-impulse-sdk/classifier/ei_run_dsp.h \
@@ -165,6 +165,8 @@ source/MIMXRT1011_Faucet_Alarm_Project.o \
 ../source/I2C.h:
 
 /Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/drivers/fsl_lpi2c.h:
+
+../source/OLED.h:
 
 ../source/compiletime.h:
 

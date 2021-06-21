@@ -6,7 +6,7 @@
  * Generated linker script file for MIMXRT1011xxxxx
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v11.3.1 [Build 5262] [2021-04-02] on Jun 11, 2021 4:50:41 PM
+ * MCUXpresso IDE v11.3.1 [Build 5262] [2021-04-02] on Jun 22, 2021 12:19:28 AM
  */
 
 INCLUDE "MIMXRT1011_Faucet_Alarm_Project_Debug_library.ld"

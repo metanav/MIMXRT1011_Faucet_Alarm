@@ -6,6 +6,7 @@
 CPP_SRCS += \
 ../source/I2C.cpp \
 ../source/MIMXRT1011_Faucet_Alarm_Project.cpp \
+../source/OLED.cpp \
 ../source/PCF85063AT.cpp \
 ../source/cpp_config.cpp \
 ../source/datetime.cpp 
@@ -16,6 +17,7 @@ C_SRCS += \
 OBJS += \
 ./source/I2C.o \
 ./source/MIMXRT1011_Faucet_Alarm_Project.o \
+./source/OLED.o \
 ./source/PCF85063AT.o \
 ./source/cpp_config.o \
 ./source/datetime.o \
@@ -24,6 +26,7 @@ OBJS += \
 CPP_DEPS += \
 ./source/I2C.d \
 ./source/MIMXRT1011_Faucet_Alarm_Project.d \
+./source/OLED.d \
 ./source/PCF85063AT.d \
 ./source/cpp_config.d \
 ./source/datetime.d 

@@ -63,10 +63,12 @@ source/edge-impulse-sdk/porting/arduino \
 source/edge-impulse-sdk/porting/ecm3532 \
 source/edge-impulse-sdk/porting/himax \
 source/edge-impulse-sdk/porting/imxrt1010 \
+source/edge-impulse-sdk/porting/lib \
 source/edge-impulse-sdk/porting/mbed \
 source/edge-impulse-sdk/porting/mingw32 \
 source/edge-impulse-sdk/porting/posix \
 source/edge-impulse-sdk/porting/silabs \
+source/edge-impulse-sdk/porting/sony \
 source/edge-impulse-sdk/porting/stm32-cubeai \
 source/edge-impulse-sdk/porting/zephyr \
 source/edge-impulse-sdk/tensorflow/lite/c \

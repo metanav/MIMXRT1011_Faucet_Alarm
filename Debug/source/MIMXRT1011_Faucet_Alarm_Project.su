@@ -189,11 +189,11 @@ ei_run_classifier.h:1275:13:void {anonymous}::calc_cepstral_mean_and_var_normali
 ei_run_classifier.h:1297:49:EI_IMPULSE_ERROR {anonymous}::can_run_classifier_image_quantized()	4	static
 ei_run_classifier.h:1325:29:EI_IMPULSE_ERROR {anonymous}::run_classifier_image_quantized(ei::signal_t*, ei_impulse_result_t*, bool)	104	static
 ei_run_classifier.h:1437:42:EI_IMPULSE_ERROR {anonymous}::run_impulse(ei_impulse_result_t*, std::function<void(float*, unsigned int)>, bool)	112	static
-MIMXRT1011_Faucet_Alarm_Project.cpp:145:6:void BOARD_EnableSaiMclkOutput(bool)	16	static
-MIMXRT1011_Faucet_Alarm_Project.cpp:157:13:void rx_callback(I2S_Type*, sai_edma_handle_t*, status_t, void*)	48	static
-MIMXRT1011_Faucet_Alarm_Project.cpp:188:5:int main()	192	static
-MIMXRT1011_Faucet_Alarm_Project.cpp:377:12:int mic_audio_signal_get_data(size_t, size_t, float*)	24	static
-MIMXRT1011_Faucet_Alarm_Project.cpp:385:6:)	16	static
+MIMXRT1011_Faucet_Alarm_Project.cpp:149:6:void BOARD_EnableSaiMclkOutput(bool)	16	static
+MIMXRT1011_Faucet_Alarm_Project.cpp:161:13:void rx_callback(I2S_Type*, sai_edma_handle_t*, status_t, void*)	48	static
+MIMXRT1011_Faucet_Alarm_Project.cpp:192:5:int main()	256	static
+MIMXRT1011_Faucet_Alarm_Project.cpp:472:12:int mic_audio_signal_get_data(size_t, size_t, float*)	24	static
+MIMXRT1011_Faucet_Alarm_Project.cpp:480:6:)	16	static
 cmath:475:5:constexpr typename __gnu_cxx::__enable_if<std::__is_integer<_Tp>::__value, double>::__type std::sqrt(_Tp) [with _Tp = int]	16	static
 std_function.h:523:2:)>::operator=(_Functor&&) [with _Functor = ei::numpy::signal_from_buffer(float*, size_t, ei::signal_t*)::<lambda(size_t, size_t, float*)>; _Res = int; _ArgTypes = {unsigned int, unsigned int, float*}]	32	static
 cmath:415:5:constexpr typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::pow(_Tp, _Up) [with _Tp = float; _Up = int]	24	static

@@ -15,6 +15,7 @@
 #include "MIMXRT1011.h"
 #include "PCF85063AT.h"
 #include "I2C.h"
+#include "OLED.h"
 #include "compiletime.h"
 
 #define M5ATOM_I2C_ADDR  0x19
@@ -80,6 +81,9 @@
 #define BOARD_MASTER_CLOCK_CONFIG()
 //#define BUFFER_SIZE   (1024U)
 #define BUFFER_SIZE   (32000U)
+
+#define RING_BUFLEN 5
+
 
 /*******************************************************************************
  * Prototypes
@@ -269,16 +273,34 @@ int main(void)
     i2c_init();
 	i2c_scan();
 
+	OLED_Init();
+	OLED_Clear_Screen();
+
+
 	datetime_t dt;
 	PCF85063AT_init();
-	//PRINTF("Resetting RTC, status: %d\n", PCF85063AT_reset());
+	PRINTF("Resetting RTC, status: %d\n", PCF85063AT_reset());
 
-	breakTime(UNIX_TIMESTAMP, &dt);
+	char timestamp_str[11] = {0};
+	timestamp_t cur_ts;
+
+	if (i2c_read(M5ATOM_I2C_ADDR, 10, (uint8_t*) timestamp_str)) {
+		cur_ts = strtol(timestamp_str, NULL, 10);
+		PRINTF("cur_ts = %ld\n", cur_ts);
+	} else {
+		PRINTF("Read failed\n");
+		return -1;
+	}
+
+	breakTime(cur_ts, &dt);
 
 	if (! PCF85063AT_time_set(&dt)) {
 		PRINTF("time set failed.\n");
 		return -1;
 	}
+
+   // PCF85063AT_countdown_set(true, CNTDOWN_CLOCK_1HZ, 30, false, false);
+
 
     inference.buf_select = 0;
     inference.buf_count = 0;
@@ -301,27 +323,14 @@ int main(void)
     record_ready = true;
 
 
+    uint8_t preds_ix[RING_BUFLEN] = {1};
+    uint8_t cur_pred_ix;
+    uint8_t prev_pred_ix;
+    long int faucet = 0;
+    long int noise  = 0;
+
     while (1)
     {
-
-        datetime_t cur_dt;
-
-        if (PCF85063AT_time_get(&cur_dt)) {
-  		  PRINTF("%d-%d-%d %d:%d:%d\n", (1970 + cur_dt.year), cur_dt.month,
-  				  cur_dt.day, cur_dt.hour, cur_dt.minute, cur_dt.second);
-
-  		  char buf[20];
-      	  sprintf(buf, "%d-%d-%d %d:%d:%d\n", (1970 + cur_dt.year), cur_dt.month,
-  				  cur_dt.day, cur_dt.hour, cur_dt.minute, cur_dt.second);
-
-      	  if (i2c_write(M5ATOM_I2C_ADDR, sizeof(buf), (uint8_t*) buf)) {
-      		  PRINTF("%d\n", sizeof(buf));
-      	  }
-
-        } else {
-      	  PRINTF("Could not get time.\n");
-        }
-
         if (inference.buf_ready == 1) {
             ei_printf(
                 "Error sample buffer overrun. Decrease the number of slices per model window "
@@ -331,12 +340,9 @@ int main(void)
 
         while (inference.buf_ready == 0) {
             ei_sleep(10);
-        	//ei_printf("wait\n");
         }
 
         inference.buf_ready = 0;
-
-        //ei_printf("data ready\n");
 
         signal_t signal;
 		signal.total_length = EI_CLASSIFIER_SLICE_SIZE;
@@ -352,24 +358,113 @@ int main(void)
 
 		if (++print_results >= (EI_CLASSIFIER_SLICES_PER_MODEL_WINDOW)) {
 			// print the predictions
-			ei_printf("Predictions ");
-			ei_printf("(DSP: %d ms., Classification: %d ms.)",
-				result.timing.dsp, result.timing.classification);
-			ei_printf(": \n");
+//			ei_printf("Predictions ");
+//			ei_printf("(DSP: %d ms., Classification: %d ms.)",
+//				result.timing.dsp, result.timing.classification);
+//			ei_printf(": \n");
+
+			uint8_t ix_max;
 
 			for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
 				ei_printf("    %s: %d\n", result.classification[ix].label,
 						  uint8_t(result.classification[ix].value * 100));
-				if (result.classification[ix].value > 0.70f) {
+
+				if (result.classification[ix].value > 0.60f) {
+                    ix_max = ix;
 				}
 			}
+
+		    memmove(preds_ix, preds_ix+1, sizeof(preds_ix[0]) * (RING_BUFLEN -1) );
+		    preds_ix[RING_BUFLEN -1] = ix_max;
+
+		    uint8_t sum = 0;
+
+		    for (uint8_t k = 0; k < RING_BUFLEN; k++) {
+		        sum += preds_ix[k];
+		    }
+
+			char text[7];
+
+	        if (sum < 3) {
+			    strcpy(text, "FAUCET");
+			    faucet++;
+			    noise=0;
+			} else {
+			    strcpy(text, "NOISE ");
+			    noise++;
+			    faucet = 0;
+			}
+			OLED_PrintText(3, 24, (uint8_t*) text);
 
 			print_results = 0;
 		}
 
+		PRINTF("noise=%ld, faucet=%ld\n", noise, faucet);
+
+		if (faucet == 25) {
+			uint8_t  buf[3] = {0x09, 0x01, 0x09};
+
+	    	if (i2c_write(M5ATOM_I2C_ADDR, sizeof(buf), buf)) {
+	            PRINTF("Buzzer on request sent!");
+	    	}
+		    PCF85063AT_countdown_set(true, CNTDOWN_CLOCK_1HZ, 10, false, false);
+			PRINTF("Countime timer started for email alert\n");
+
+		}
+
+		if (noise == 20) {
+			PRINTF("Countime timer disabled\n");
+		    PCF85063AT_countdown_set(true, CNTDOWN_CLOCK_1HZ, 0, false, false);
+
+			uint8_t  buf[3] = {0x09, 0x00, 0x09};
+
+	    	if (i2c_write(M5ATOM_I2C_ADDR, sizeof(buf), buf)) {
+	            PRINTF("Buzzer off request sent!");
+	    	}
+		}
+
+	   datetime_t cur_dt;
+
+	   if (PCF85063AT_time_get(&cur_dt)) {
+		  PRINTF("%02d-%02d-%d %02d:%02d:%02d\n", (1970 + cur_dt.year), cur_dt.month,
+				  cur_dt.day, cur_dt.hour, cur_dt.minute, cur_dt.second);
+
+		  char buf[20];
+		  sprintf(buf, "%d-%d-%d %d:%d:%d\n", (1970 + cur_dt.year), cur_dt.month,
+				  cur_dt.day, cur_dt.hour, cur_dt.minute, cur_dt.second);
+
+	  } else {
+		  PRINTF("Could not get time.\n");
+	  }
+
+
+	    /* Read control registers */
+	    PCF85063AT_Regs regs;
+	    PCF85063AT_ctrl_get(&regs);
+	    PCF85063AT_Regs new_regs = regs;
+	    PCF85063AT_REG_SET(new_regs, PCF85063AT_REG_AF);
+	    PCF85063AT_REG_SET(new_regs, PCF85063AT_REG_TF);
+
+
+	    if (PCF85063AT_REG_GET(regs, PCF85063AT_REG_TF))
+	    {
+	        PRINTF("Countdown timer triggered!\n");
+	        PCF85063AT_REG_CLEAR(new_regs, PCF85063AT_REG_TF);
+	        // Disable timer
+	        uint8_t  buf[3] = {0x05, 0x01, 0x05};
+
+//	    	if (i2c_write(M5ATOM_I2C_ADDR, sizeof(buf), buf)) {
+//	            PRINTF("Alert mail send request dispatched!");
+//	    	}
+
+	        PCF85063AT_countdown_set(true, CNTDOWN_CLOCK_1HZ, 0, false, false);
+
+	    }
+
+	    PCF85063AT_ctrl_set(new_regs, false);
 	}
 
-    ei_printf("Exited\n");
+    PRINTF("Exited\n");
 
     return 0;
 }
