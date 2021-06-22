@@ -1,4 +1,4 @@
-# Install script for directory: /Users/naveen/esp/i2c_slave_ntp_smtp/main
+# Install script for directory: /Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/esp32_i2c_slave_ntp_smtp/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

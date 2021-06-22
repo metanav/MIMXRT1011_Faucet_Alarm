@@ -1,4 +1,4 @@
-# Install script for directory: /Users/naveen/esp/i2c_slave_ntp_smtp
+# Install script for directory: /Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/esp32_i2c_slave_ntp_smtp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/naveen/esp/i2c_slave_ntp_smtp/build/esp-idf/cmake_install.cmake")
+  include("/Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/esp32_i2c_slave_ntp_smtp/build/esp-idf/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/naveen/esp/i2c_slave_ntp_smtp/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/esp32_i2c_slave_ntp_smtp/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

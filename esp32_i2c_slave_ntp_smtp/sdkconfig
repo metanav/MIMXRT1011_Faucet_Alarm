@@ -125,9 +125,9 @@ CONFIG_PARTITION_TABLE_MD5=y
 #
 CONFIG_SMTP_SERVER="smtp.googlemail.com"
 CONFIG_SMTP_PORT_NUMBER="587"
-CONFIG_SMTP_SENDER_MAIL="nav.720x@gmail.com"
-CONFIG_SMTP_SENDER_PASSWORD="Doeacc@123"
-CONFIG_SMTP_RECIPIENT_MAIL="ddfbitn264@i.softbank.jp"
+CONFIG_SMTP_SENDER_MAIL="youremail@example.com"
+CONFIG_SMTP_SENDER_PASSWORD="yourpassword"
+CONFIG_SMTP_RECIPIENT_MAIL="recipient_email@example.com"
 # end of Example Configuration
 
 #

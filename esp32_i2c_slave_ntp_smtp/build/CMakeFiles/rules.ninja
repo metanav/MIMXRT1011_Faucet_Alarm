@@ -1451,7 +1451,7 @@ rule CXX_STATIC_LIBRARY_LINKER____idf_protocol_examples_common_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/local/Cellar/cmake/3.19.1/bin/cmake --regenerate-during-build -S/Users/naveen/esp/i2c_slave_ntp_smtp -B/Users/naveen/esp/i2c_slave_ntp_smtp/build
+  command = /usr/local/Cellar/cmake/3.19.1/bin/cmake --regenerate-during-build -S/Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/esp32_i2c_slave_ntp_smtp -B/Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/esp32_i2c_slave_ntp_smtp/build
   description = Re-running CMake...
   generator = 1
 

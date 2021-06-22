@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/naveen/esp/i2c_slave_ntp_smtp/build/esp-idf/esp_system/port/esp32/cmake_install.cmake")
+  include("/Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/esp32_i2c_slave_ntp_smtp/build/esp-idf/esp_system/port/esp32/cmake_install.cmake")
 
 endif()
 

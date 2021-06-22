@@ -134,14 +134,15 @@ typedef struct {
     unsigned int n_samples;
 } inference_t;
 
-__DATA(RAM3) static inference_t inference;
 
-__DATA(RAM3) static signed short sampleBuffer[EI_CLASSIFIER_SLICE_SIZE>>1];
+// Place the buffer in the OCRAM memory region
+__DATA(RAM3)  static inference_t inference;
+__DATA(RAM3)  static signed short sampleBuffer[EI_CLASSIFIER_SLICE_SIZE>>1];
+
 
 static bool record_ready = false;
 static bool debug_nn = false; // Set this to true to see e.g. features generated from the raw signal
 static int print_results = -(EI_CLASSIFIER_SLICES_PER_MODEL_WINDOW);
-
 
 /*******************************************************************************
  * Code
@@ -324,10 +325,9 @@ int main(void)
 
 
     uint8_t preds_ix[RING_BUFLEN] = {1};
-    uint8_t cur_pred_ix;
-    uint8_t prev_pred_ix;
-    long int faucet = 0;
-    long int noise  = 0;
+
+    unsigned long int faucet = 0;
+    unsigned long int noise  = 0;
 
     while (1)
     {
@@ -426,16 +426,11 @@ int main(void)
 	   datetime_t cur_dt;
 
 	   if (PCF85063AT_time_get(&cur_dt)) {
-		  PRINTF("%02d-%02d-%d %02d:%02d:%02d\n", (1970 + cur_dt.year), cur_dt.month,
+	       PRINTF("%02d-%02d-%d %02d:%02d:%02d\n", (1970 + cur_dt.year), cur_dt.month,
 				  cur_dt.day, cur_dt.hour, cur_dt.minute, cur_dt.second);
-
-		  char buf[20];
-		  sprintf(buf, "%d-%d-%d %d:%d:%d\n", (1970 + cur_dt.year), cur_dt.month,
-				  cur_dt.day, cur_dt.hour, cur_dt.minute, cur_dt.second);
-
-	  } else {
-		  PRINTF("Could not get time.\n");
-	  }
+	    } else {
+		   PRINTF("Could not get time.\n");
+	    }
 
 
 	    /* Read control registers */
@@ -453,9 +448,11 @@ int main(void)
 	        // Disable timer
 	        uint8_t  buf[3] = {0x05, 0x01, 0x05};
 
-//	    	if (i2c_write(M5ATOM_I2C_ADDR, sizeof(buf), buf)) {
-//	            PRINTF("Alert mail send request dispatched!");
-//	    	}
+	    	if (i2c_write(M5ATOM_I2C_ADDR, sizeof(buf), buf)) {
+	            PRINTF("Alert email send request dispatched!");
+	    	}
+
+	    	// disable timer
 
 	        PCF85063AT_countdown_set(true, CNTDOWN_CLOCK_1HZ, 0, false, false);
 
