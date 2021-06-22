@@ -1,6 +1,0 @@
-source "/Users/naveen/esp/esp-idf/components/app_update/Kconfig.projbuild"
-source "/Users/naveen/esp/esp-idf/components/bootloader/Kconfig.projbuild"
-source "/Users/naveen/esp/esp-idf/components/esptool_py/Kconfig.projbuild"
-source "/Users/naveen/esp/esp-idf/components/partition_table/Kconfig.projbuild"
-source "/Users/naveen/Documents/MCUXpressoIDE_11.3.1/workspace/MIMXRT1011_Faucet_Alarm_Project/esp32_i2c_slave_ntp_smtp/main/Kconfig.projbuild"
-source "/Users/naveen/esp/esp-idf/examples/common_components/protocol_examples_common/Kconfig.projbuild"
